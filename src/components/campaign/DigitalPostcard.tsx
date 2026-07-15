@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Share2, RotateCcw } from "lucide-react";
 import type { Landmark } from "@/data/landmarks";
-import { getKeychainArt } from "@/assets/keys";
+import { getPostcardArt } from "@/assets/postcards";
 
 type Props = {
   landmark: Landmark;
@@ -53,7 +53,7 @@ export function DigitalPostcard({ landmark, onClose }: Props) {
             {/* Stamp-shaped perforated edge */}
             <div className="absolute inset-x-2 bottom-2 top-2 overflow-hidden rounded-2xl bg-muted shadow-inner">
               <img
-                src={getKeychainArt(landmark.art)}
+                src={getPostcardArt(landmark.art)}
                 alt=""
                 width={640}
                 height={640}
@@ -61,28 +61,7 @@ export function DigitalPostcard({ landmark, onClose }: Props) {
                 className="h-full w-full object-contain bg-white"
               />
             </div>
-            {/* Overlay with place name */}
-            <div className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5">
-              {/* Brass ring */}
-              <div className="mb-3 flex justify-center">
-                <span className="inline-flex size-6 items-center justify-center rounded-full border-2 border-gold bg-gold/20 text-[10px] text-gold">
-                  ●
-                </span>
-              </div>
-              <h3
-                className="text-center text-2xl font-bold tracking-tight text-white"
-                style={{
-                  fontFamily: "'Georgia', 'Times New Roman', serif",
-                  fontVariant: "small-caps",
-                }}
-              >
-                {landmark.name}
-              </h3>
-              <p className="mt-1 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-                {landmark.province}
-              </p>
-            </div>
-            {/* Tap hint */}
+
             <div className="absolute right-3 top-3 z-20 rounded-full bg-black/50 px-2.5 py-1 text-[10px] font-semibold text-white/80">
               Tap to flip
             </div>
