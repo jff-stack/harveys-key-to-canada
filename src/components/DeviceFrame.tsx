@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 export default function DeviceFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-[100dvh] w-full bg-stone-200 dark:bg-stone-950 md:grid md:place-items-center md:py-10">
+    <div className="relative min-h-[100dvh] w-full bg-stone-200 dark:bg-stone-950 md:grid md:place-items-center md:py-10">
       <div
         className="
           relative flex h-[100dvh] w-full flex-col overflow-hidden bg-stone-50 dark:bg-stone-900
@@ -15,6 +15,9 @@ export default function DeviceFrame({ children }: { children: ReactNode }) {
         <div className="flex-1 overflow-y-auto overscroll-contain">
           {children}
         </div>
+      </div>
+      <div className="fixed bottom-2 left-0 right-0 pointer-events-none text-center text-xs text-stone-400 dark:text-stone-600">
+        created by Jason Francis, Team 64
       </div>
     </div>
   );

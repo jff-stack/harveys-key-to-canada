@@ -86,6 +86,9 @@ function DesignSystem() {
           </section>
 
         </div>
+        <div className="pt-16 pb-8 text-center font-mono text-sm text-stone-400 dark:text-stone-500 italic">
+          Jason Francis
+        </div>
       </div>
     </div>
   );
