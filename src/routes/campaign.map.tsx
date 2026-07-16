@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Route as RouteIcon } from "lucide-react";
+import { Path } from "@phosphor-icons/react";
 import { PhoneShell } from "@/components/campaign/PhoneShell";
 import { AppHeader } from "@/components/campaign/AppHeader";
 import { CanadaMap } from "@/components/campaign/CanadaMap";
@@ -29,7 +29,7 @@ function MapScreen() {
           illuminated.
         </p>
 
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-border/60 bg-white shadow-[var(--shadow-card)]">
+        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-border/30 bg-card shadow-[var(--shadow-card)]">
           {/* Fill overlay grows with completion */}
           <motion.div
             className="pointer-events-none absolute inset-x-0 bottom-0 z-0"
@@ -99,7 +99,7 @@ function MapScreen() {
                   <p className="mt-0.5 text-foreground">{active.harveys}</p>
                 </div>
                 <div className="flex items-start gap-2 rounded-2xl bg-muted/60 p-3 text-sm">
-                  <RouteIcon className="mt-0.5 size-4 shrink-0 text-harveys" />
+                  <Path className="size-4 shrink-0 text-harveys" />
                   <div>
                     <p className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
                       Road trip

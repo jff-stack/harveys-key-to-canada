@@ -1,128 +1,92 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ChevronLeft } from "lucide-react";
+import { CaretLeft } from "@phosphor-icons/react";
 
 export const Route = createFileRoute("/campaign/design-system")({
   head: () => ({ meta: [{ title: "Key to Canada — Design System" }] }),
   component: DesignSystem,
 });
 
-const COLORS = [
-  { name: "Harvey's Orange", var: "var(--grad-harveys)", note: "Primary brand & CTAs" },
-  { name: "Canadian Red", var: "var(--grad-canada)", note: "Accent & hero surfaces" },
-  { name: "Gold Accent", var: "var(--grad-gold)", note: "Award highlights" },
-  { name: "Aurora", var: "var(--grad-aurora)", note: "Map & Grand Prize" },
-];
-
 function DesignSystem() {
   return (
-    <div className="min-h-[100dvh] bg-muted">
-      <div className="mx-auto max-w-3xl px-5 py-10">
-        <Link to="/campaign/profile" className="mb-6 inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground">
-          <ChevronLeft className="size-4" /> Back to profile
+    <div className="min-h-[100dvh] bg-[#fdfbf7] text-stone-800 dark:bg-stone-950 dark:text-stone-300">
+      <div className="mx-auto max-w-2xl px-6 py-8">
+        <Link to="/campaign/profile" className="mb-6 inline-flex items-center gap-1 text-sm font-medium text-stone-500 hover:text-stone-800 dark:hover:text-stone-100">
+          <CaretLeft className="size-4" /> Back to profile
         </Link>
 
-        <h1 className="font-display text-4xl font-extrabold text-foreground">Key to Canada — Design System</h1>
-        <p className="mt-2 max-w-2xl text-muted-foreground">
-          A premium, gamified seasonal campaign layered into Harvey's existing app. It preserves Harvey's dark UI, orange
-          brand, and bottom-nav pattern while adding an Apple-Wallet-grade collectible experience.
-        </p>
+        <div className="mb-8 border-b-2 border-stone-200 pb-4 dark:border-stone-800">
+          <h1 className="font-mono text-2xl font-bold uppercase tracking-widest text-stone-900 dark:text-stone-100">Design Notes</h1>
+          <p className="mt-2 font-mono text-sm text-stone-500">Key to Canada Campaign</p>
+        </div>
 
-        <Section title="UX Rationale">
-          <ul className="list-disc space-y-2 pl-5 text-sm text-foreground">
-            <li><b>Fixed reward roadmap:</b> every combo → keychain → scan → progress toward known milestones. Predictable rewards build trust and drive repeat purchases.</li>
-            <li><b>Completion mechanics:</b> a fixed set of 8 equal-probability landmarks makes "so close" feelings honest (not gambling). No rarity tiers.</li>
-            <li><b>Always-on progress:</b> home ring, map fill, and passport stamps constantly signal "I'm nearly there."</li>
-            <li><b>Canadian identity:</b> landmarks, maple particles, passport, and road-trip stories celebrate the brand's heritage.</li>
-            <li><b>Social pull:</b> shareable postcards and collection screenshots turn collecting into a group activity.</li>
-          </ul>
-        </Section>
+        <div className="space-y-8 font-mono text-sm leading-relaxed">
+          
+          <section>
+            <h2 className="mb-2 text-lg font-semibold text-stone-900 dark:text-stone-100">UX Rationale</h2>
+            <ul className="list-inside list-disc space-y-1 text-stone-600 dark:text-stone-400">
+              <li>Fixed reward roadmap: predictable rewards build trust.</li>
+              <li>Completion mechanics: 8 equal-probability landmarks; no rarity tiers.</li>
+              <li>Always-on progress: home ring, map fill, and passport stamps constantly signal progress.</li>
+              <li>Canadian identity: celebrates brand heritage.</li>
+              <li>Social pull: shareable postcards and collection screenshots.</li>
+            </ul>
+          </section>
 
-        <Section title="User Flow">
-          <pre className="overflow-x-auto rounded-2xl bg-card p-4 text-xs text-foreground shadow-[var(--shadow-card)]">{`Harvey's Home ─▶ Key to Canada banner
-      │
-      ▼
-Campaign Landing (Collect · Scan · Earn · Complete)
-      │
-      ▼
-Home Dashboard ──▶ Scan ──▶ Celebration ──▶ Reward Reveal ──▶ Redeem / Save
-      │                                              │
-      ├──▶ Collection (flip cards + postcards)       ▼
-      ├──▶ Interactive Canada Map (pins light up)   Collection updated
-      ├──▶ Grand Prize (roadmap + countdown)
-      └──▶ Profile ──▶ Passport / Badges / Share`}</pre>
-        </Section>
+          <section>
+            <h2 className="mb-2 text-lg font-semibold text-stone-900 dark:text-stone-100">User Flow</h2>
+            <div className="rounded border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-900">
+              <pre className="whitespace-pre-wrap text-xs text-stone-600 dark:text-stone-400">
+{`Home -> Campaign Landing
+-> Dashboard -> Scan -> Reward Reveal -> Redeem
+-> Collection (Cards/Postcards)
+-> Map (Interactive)
+-> Grand Prize Roadmap
+-> Profile (Passport / Badges)`}
+              </pre>
+            </div>
+          </section>
 
-        <Section title="Colour Palette">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {COLORS.map((c) => (
-              <div key={c.name} className="overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-card)]">
-                <div className="h-20" style={{ background: c.var }} />
-                <div className="p-3">
-                  <p className="text-sm font-bold text-foreground">{c.name}</p>
-                  <p className="text-xs text-muted-foreground">{c.note}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Section>
+          <section>
+            <h2 className="mb-2 text-lg font-semibold text-stone-900 dark:text-stone-100">Component Library</h2>
+            <ul className="grid grid-cols-2 gap-1 list-inside list-disc text-stone-600 dark:text-stone-400">
+              <li>Progress Ring</li>
+              <li>Collectible Card</li>
+              <li>Reward Card</li>
+              <li>Map Pin</li>
+              <li>Passport Stamp</li>
+              <li>Stat Tile</li>
+              <li>Glass Tab Bar</li>
+              <li>Bottom Sheet</li>
+              <li>Roadmap Timeline</li>
+              <li>Achievement Badge</li>
+              <li>Digital Postcard</li>
+            </ul>
+          </section>
 
-        <Section title="Typography">
-          <div className="space-y-2 rounded-2xl bg-card p-5 shadow-[var(--shadow-card)]">
-            <p className="font-display text-3xl font-extrabold text-foreground">Sora — Display / Headings</p>
-            <p className="text-base text-foreground">Manrope — Body copy, labels, and UI text for clarity at small sizes.</p>
-          </div>
-        </Section>
+          <section>
+            <h2 className="mb-2 text-lg font-semibold text-stone-900 dark:text-stone-100">Animation Notes</h2>
+            <ul className="list-inside list-disc space-y-1 text-stone-600 dark:text-stone-400">
+              <li>Reward reveal: 3D rotateY flip, spring-scaled icon, confetti.</li>
+              <li>Scan: looping sweep, routing after 1.8s.</li>
+              <li>Map: pins pop, landmass fills bottom-up with completion.</li>
+              <li>Passport: stamps land with spring press and rotation.</li>
+              <li>Postcard: CSS 3D perspective flip (front to back).</li>
+            </ul>
+          </section>
 
-        <Section title="Component Library">
-          <div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
-            {["Progress Ring","Collectible Card","Reward Card","Map Pin","Passport Stamp","Stat Tile","Glass Tab Bar","Bottom Sheet","Roadmap Timeline","Achievement Badge","Digital Postcard","Dev Drawer"].map((c) => (
-              <div key={c} className="rounded-xl bg-card p-3 font-medium text-foreground shadow-[var(--shadow-card)]">{c}</div>
-            ))}
-          </div>
-        </Section>
+          <section>
+            <h2 className="mb-2 text-lg font-semibold text-stone-900 dark:text-stone-100">Push Notifications</h2>
+            <ul className="list-inside list-disc space-y-1 text-stone-600 dark:text-stone-400">
+              <li>One more landmark needed to enter the Grand Prize draw.</li>
+              <li>Next reward is 1 combo away.</li>
+              <li>Ontario unlocked, map updated.</li>
+              <li>Free fries unlocked (redeem in-store/mobile).</li>
+              <li>Collection complete, entered into Grand Prize.</li>
+            </ul>
+          </section>
 
-        <Section title="Animation Notes">
-          <ul className="list-disc space-y-2 pl-5 text-sm text-foreground">
-            <li><b>Reward reveal:</b> 3D rotateY flip + spring-scaled emoji, opens with confetti for earned rewards.</li>
-            <li><b>Scan:</b> looping laser sweep → maple pop → route to reward after 1.8s.</li>
-            <li><b>Map:</b> pins use <code>pin-pop</code>, landmass fills bottom-up with completion percentage.</li>
-            <li><b>Passport:</b> stamps land with a spring press and slight rotation.</li>
-            <li><b>Postcard:</b> CSS 3D perspective flip between front (travel poster) and back (handwritten message).</li>
-            <li><b>Ambient:</b> floating maple particles, animated progress bars.</li>
-          </ul>
-        </Section>
-
-        <Section title="Accessibility">
-          <ul className="list-disc space-y-2 pl-5 text-sm text-foreground">
-            <li>Dark & light modes with token-driven contrast (toggle in every header).</li>
-            <li>Large tap targets, semantic headings, and aria-labels on icon-only controls.</li>
-            <li>Motion is decorative — all state changes are reflected in text/values too.</li>
-          </ul>
-        </Section>
-
-        <Section title="Push Notification Concepts">
-          <div className="space-y-2">
-            {["You only need ONE more landmark to enter the Grand Prize draw 🍁","Your next reward is just 1 combo away!","You've unlocked Ontario! Tap to see the map light up","🍟 Free fries unlocked — redeem in-store or via mobile order","Complete your collection and enter the Grand Prize draw"].map((n) => (
-              <div key={n} className="rounded-2xl bg-card p-3 text-sm text-foreground shadow-[var(--shadow-card)]">
-                <span className="font-bold text-harveys">Harvey's · </span>{n}
-              </div>
-            ))}
-          </div>
-        </Section>
-
-        <Link to="/campaign/home" className="mt-8 inline-flex rounded-2xl px-6 py-3 text-sm font-bold text-white" style={{ background: "var(--grad-harveys)" }}>
-          Back to the experience
-        </Link>
+        </div>
       </div>
     </div>
-  );
-}
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="mt-8">
-      <h2 className="mb-3 font-display text-xl font-bold text-foreground">{title}</h2>
-      {children}
-    </section>
   );
 }

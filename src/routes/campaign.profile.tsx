@@ -1,14 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
-  BookMarked,
-  Share2,
+  BookmarkSimple,
+  ShareNetwork,
   Gift,
-  ChevronRight,
+  CaretRight,
   Trophy,
   MapPin,
   Mail,
-} from "lucide-react";
+  SignOut,
+  Gear,
+} from "@phosphor-icons/react";
 import { PhoneShell } from "@/components/campaign/PhoneShell";
 import { AppHeader } from "@/components/campaign/AppHeader";
 import { ProgressRing } from "@/components/campaign/ProgressRing";
@@ -81,17 +83,17 @@ function Profile() {
         {/* Stats grid */}
         <div className="grid grid-cols-3 gap-3">
           <Stat
-            icon={<MapPin className="size-5 text-canada" />}
+            icon={<MapPin className="size-5 text-canada" weight="bold" />}
             value={`${collectedCount}/8`}
             label="Landmarks"
           />
           <Stat
-            icon={<Gift className="size-5 text-harveys" />}
+            icon={<Gift className="size-5 text-harveys" weight="bold" />}
             value={state.purchaseCount}
             label="Combos"
           />
           <Stat
-            icon={<Trophy className="size-5 text-gold-deep" />}
+            icon={<Trophy className="size-5 text-gold-deep" weight="bold" />}
             value={earnedRewards.length}
             label="Rewards"
           />
@@ -122,20 +124,20 @@ function Profile() {
         <div className="overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-card)]">
           <Row
             to="/campaign/passport"
-            icon={<BookMarked className="size-5 text-canada" />}
+            icon={<BookmarkSimple className="size-5 text-canada" weight="bold" />}
             label="Canadian Passport"
           />
           <Row
             to="/campaign/grand-prize"
-            icon={<Trophy className="size-5 text-harveys" />}
+            icon={<Trophy className="size-5 text-harveys" weight="bold" />}
             label="Grand Prize Progress"
           />
-          <button className="flex w-full items-center gap-3 border-t border-border/60 px-4 py-4 text-left">
-            <Share2 className="size-5 text-aurora-2" />
+          <button className="flex w-full items-center gap-3 border-t border-border/30 px-4 py-4 text-left">
+            <ShareNetwork className="size-5 text-aurora-2" weight="bold" />
             <span className="flex-1 text-sm font-semibold text-foreground">
               Share my collection
             </span>
-            <ChevronRight className="size-4 text-muted-foreground" />
+            <CaretRight className="size-4 text-muted-foreground" weight="bold" />
           </button>
         </div>
 
@@ -182,13 +184,13 @@ function Row({
   return (
     <Link
       to={to}
-      className="flex items-center gap-3 px-4 py-4 [&:not(:first-child)]:border-t [&:not(:first-child)]:border-border/60"
+      className="flex items-center gap-3 px-4 py-4 [&:not(:first-child)]:border-t [&:not(:first-child)]:border-border/30"
     >
       {icon}
       <span className="flex-1 text-sm font-semibold text-foreground">
         {label}
       </span>
-      <ChevronRight className="size-4 text-muted-foreground" />
+      <CaretRight className="size-4 text-muted-foreground" />
     </Link>
   );
 }

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Gift, ScanLine, Grid3x3, ChevronRight, Trophy } from "lucide-react";
+import { Gift, Scan, GridNine, CaretRight, Trophy } from "@phosphor-icons/react";
 import { PhoneShell } from "@/components/campaign/PhoneShell";
 import { AppHeader } from "@/components/campaign/AppHeader";
 import { ProgressRing } from "@/components/campaign/ProgressRing";
@@ -108,7 +108,7 @@ function HomeDashboard() {
             className="flex flex-col items-start gap-3 rounded-2xl p-4 text-white shadow-[var(--shadow-float)] transition-transform active:scale-[0.98]"
             style={{ background: "var(--grad-harveys)" }}
           >
-            <ScanLine className="size-7" />
+            <Scan className="size-7" weight="bold" />
             <span className="font-display text-base font-bold">
               Quick Scan
             </span>
@@ -117,7 +117,7 @@ function HomeDashboard() {
             to="/campaign/collection"
             className="flex flex-col items-start gap-3 rounded-2xl bg-card p-4 text-foreground shadow-[var(--shadow-card)] transition-transform active:scale-[0.98]"
           >
-            <Grid3x3 className="size-7 text-canada" />
+            <GridNine className="size-7 text-canada" weight="bold" />
             <span className="font-display text-base font-bold">
               View Collection
             </span>
@@ -163,7 +163,7 @@ function HomeDashboard() {
               to="/campaign/collection"
               className="flex items-center gap-1 text-sm font-semibold text-harveys"
             >
-              All <ChevronRight className="size-4" />
+              All <CaretRight className="size-4" />
             </Link>
           </div>
           <div className="flex gap-3 overflow-x-auto pb-2">

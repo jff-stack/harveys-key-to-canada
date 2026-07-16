@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, Check, Mail } from "lucide-react";
+import { Lock, Check, Envelope } from "@phosphor-icons/react";
 import { PhoneShell } from "@/components/campaign/PhoneShell";
 import { AppHeader } from "@/components/campaign/AppHeader";
 import { DigitalPostcard } from "@/components/campaign/DigitalPostcard";
@@ -22,23 +22,121 @@ function Collection() {
     null,
   );
 
-  if (postcardLandmark) {
-    return (
-      <PhoneShell
-        header={<AppHeader title="Postcard" back="/campaign/collection" />}
-      >
-        <div className="p-4">
-          <DigitalPostcard
-            landmark={postcardLandmark}
-            onClose={() => setPostcardLandmark(null)}
-          />
-        </div>
-      </PhoneShell>
-    );
-  }
+
 
   return (
-    <PhoneShell header={<AppHeader title="Collection" />}>
+    <PhoneShell
+      header={<AppHeader title="Collection" />}
+      overlay={
+        <>
+          {/* Detail bottom sheet */}
+          <AnimatePresence>
+            {active && (
+              <motion.div
+                className="absolute inset-0 z-50 flex items-end justify-center bg-black/60"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setActive(null)}
+              >
+                <motion.div
+                  initial={{ y: 40, opacity: 0, rotateX: 20 }}
+                  animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                  exit={{ y: 40, opacity: 0 }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-full rounded-t-3xl bg-card p-6 shadow-[var(--shadow-float)]"
+                >
+                  <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-muted" />
+                  <div className="flex items-center justify-center relative">
+                    <img
+                      src={getKeychainArt(active.art)}
+                      alt={active.name}
+                      width={640}
+                      height={640}
+                      className={cn(
+                        "h-40 w-auto",
+                        isCollected(active.id)
+                          ? "animate-float drop-shadow-xl"
+                          : "opacity-40 brightness-0"
+                      )}
+                    />
+                    {isCollected(active.id) && getCopyCount(active.id) > 1 && (
+                      <span className="absolute -right-2 top-0 flex items-center justify-center rounded-full bg-white px-3 py-1 text-sm font-extrabold text-harveys shadow-lg">
+                        ×{getCopyCount(active.id)}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mt-4 font-display text-2xl font-extrabold text-foreground">
+                    {isCollected(active.id) ? active.name : "Locked Landmark"}
+                  </h3>
+                  <p className="text-sm font-semibold text-canada">
+                    {active.location}
+                  </p>
+    
+                  {isCollected(active.id) ? (
+                    <div className="mt-4 space-y-3 text-sm">
+                      <Fact label="Did you know" value={active.fact} />
+                      <Fact
+                        label="Harvey's connection"
+                        value={active.harveys}
+                      />
+                      <Fact label="Fun trivia" value={active.trivia} />
+                      {/* View Postcard button */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActive(null);
+                          setPostcardLandmark(active);
+                        }}
+                        className="flex w-full items-center justify-center gap-2 rounded-2xl py-3 text-sm font-bold text-white shadow-lg"
+                        style={{ background: "var(--grad-harveys)" }}
+                      >
+                        <Envelope className="size-4" />
+                        View Postcard
+                      </button>
+                    </div>
+                  ) : (
+                    <p className="mt-4 text-sm text-muted-foreground">
+                      Buy a qualifying combo and scan its keychain to unlock
+                      this landmark and reveal its story.
+                    </p>
+                  )}
+                  <button
+                    onClick={() => setActive(null)}
+                    className="mt-5 w-full rounded-2xl bg-muted py-3 text-sm font-bold text-foreground"
+                  >
+                    Close
+                  </button>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Postcard full-screen overlay */}
+          <AnimatePresence>
+            {postcardLandmark && (
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 40 }}
+                className="absolute inset-0 z-[100] flex flex-col bg-background"
+              >
+                <AppHeader
+                  title="Postcard"
+                  onBack={() => setPostcardLandmark(null)}
+                />
+                <div className="flex-1 overflow-y-auto p-4 pt-10">
+                  <DigitalPostcard
+                    landmark={postcardLandmark}
+                    onClose={() => setPostcardLandmark(null)}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
+      }
+    >
       <div className="p-4">
         <div className="mb-4 flex items-center justify-between rounded-2xl bg-card p-4 shadow-[var(--shadow-card)]">
           <div>
@@ -117,89 +215,6 @@ function Collection() {
           })}
         </div>
       </div>
-
-      {/* Detail bottom sheet */}
-      <AnimatePresence>
-        {active && (
-          <motion.div
-            className="absolute inset-0 z-50 flex items-end justify-center bg-black/60"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActive(null)}
-          >
-            <motion.div
-              initial={{ y: 40, opacity: 0, rotateX: 20 }}
-              animate={{ y: 0, opacity: 1, rotateX: 0 }}
-              exit={{ y: 40, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full rounded-t-3xl bg-card p-6 shadow-[var(--shadow-float)]"
-            >
-              <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-muted" />
-              <div className="flex items-center justify-center relative">
-                <img
-                  src={getKeychainArt(active.art)}
-                  alt={active.name}
-                  width={640}
-                  height={640}
-                  className={cn(
-                    "h-40 w-auto",
-                    isCollected(active.id)
-                      ? "animate-float drop-shadow-xl"
-                      : "opacity-40 brightness-0"
-                  )}
-                />
-                {isCollected(active.id) && getCopyCount(active.id) > 1 && (
-                  <span className="absolute -right-2 top-0 flex items-center justify-center rounded-full bg-white px-3 py-1 text-sm font-extrabold text-harveys shadow-lg">
-                    ×{getCopyCount(active.id)}
-                  </span>
-                )}
-              </div>
-              <h3 className="mt-4 font-display text-2xl font-extrabold text-foreground">
-                {isCollected(active.id) ? active.name : "Locked Landmark"}
-              </h3>
-              <p className="text-sm font-semibold text-canada">
-                {active.location}
-              </p>
-
-              {isCollected(active.id) ? (
-                <div className="mt-4 space-y-3 text-sm">
-                  <Fact label="Did you know" value={active.fact} />
-                  <Fact
-                    label="Harvey's connection"
-                    value={active.harveys}
-                  />
-                  <Fact label="Fun trivia" value={active.trivia} />
-                  {/* View Postcard button */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActive(null);
-                      setPostcardLandmark(active);
-                    }}
-                    className="flex w-full items-center justify-center gap-2 rounded-2xl py-3 text-sm font-bold text-white shadow-lg"
-                    style={{ background: "var(--grad-harveys)" }}
-                  >
-                    <Mail className="size-4" />
-                    View Postcard
-                  </button>
-                </div>
-              ) : (
-                <p className="mt-4 text-sm text-muted-foreground">
-                  Buy a qualifying combo and scan its keychain to unlock
-                  this landmark and reveal its story.
-                </p>
-              )}
-              <button
-                onClick={() => setActive(null)}
-                className="mt-5 w-full rounded-2xl bg-muted py-3 text-sm font-bold text-foreground"
-              >
-                Close
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </PhoneShell>
   );
 }

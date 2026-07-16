@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Check, MapPin } from "lucide-react";
+import { Check, MapPin } from "@phosphor-icons/react";
 import { PhoneShell } from "@/components/campaign/PhoneShell";
 import { AppHeader } from "@/components/campaign/AppHeader";
 import { useCampaign } from "@/state/campaign";

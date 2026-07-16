@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ShoppingBag, ChevronRight, UtensilsCrossed, Tag, Star, Receipt, MoreHorizontal } from "lucide-react";
+import { Bag, CaretRight, ForkKnife, Tag, Star, Receipt, DotsThree } from "@phosphor-icons/react";
 import cntower from "@/assets/landmark-cntower.png";
 import niagara from "@/assets/landmark-niagara.png";
 import DeviceFrame from "@/components/DeviceFrame";
@@ -21,7 +21,7 @@ function Index() {
           >
             HARVEY'S
           </span>
-          <ShoppingBag className="size-5 text-foreground" />
+          <Bag className="size-6 text-harveys" />
         </header>
 
         {/* Pick-up bar */}
@@ -53,7 +53,7 @@ function Index() {
                     Collect landmarks. Earn rewards. Complete Canada.
                   </p>
                   <span className="mt-3 inline-flex items-center gap-1 rounded-full bg-white px-4 py-2 text-sm font-bold text-canada">
-                    Start Collecting <ChevronRight className="size-4" />
+                    Start Collecting <CaretRight className="size-4" />
                   </span>
                 </div>
                 <img
@@ -71,7 +71,7 @@ function Index() {
             <div className="mb-3 flex items-center justify-between">
               <h3 className="font-display text-xl font-bold text-foreground">Menu</h3>
               <span className="flex items-center gap-1 text-sm font-semibold text-harveys">
-                See full menu <ChevronRight className="size-4" />
+                See full menu <CaretRight className="ml-1 size-4 opacity-50" />
               </span>
             </div>
             <div className="grid grid-cols-2 gap-3">
@@ -93,14 +93,14 @@ function Index() {
         {/* Existing Harvey's bottom nav */}
         <nav className="sticky bottom-0 flex items-stretch justify-between border-t border-border/60 bg-background px-2 py-2">
           {[
-            { l: "Menu", I: UtensilsCrossed },
+            { l: "Menu", I: ForkKnife },
             { l: "Coupons", I: Tag },
             { l: "Favourites", I: Star },
             { l: "Orders", I: Receipt },
-            { l: "More", I: MoreHorizontal },
+            { l: "More", I: DotsThree },
           ].map(({ l, I }) => (
             <div key={l} className="flex flex-1 flex-col items-center gap-1 py-1">
-              <I className="size-5 text-muted-foreground" />
+              <I className="size-7 text-muted-foreground" />
               <span className="text-[10px] font-semibold text-muted-foreground">{l}</span>
             </div>
           ))}

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Trophy, Lock, Check, Clock, Gift } from "lucide-react";
+import { Trophy, Lock, Check, Clock, Gift } from "@phosphor-icons/react";
 import { PhoneShell } from "@/components/campaign/PhoneShell";
 import { AppHeader } from "@/components/campaign/AppHeader";
 import { useCampaign } from "@/state/campaign";

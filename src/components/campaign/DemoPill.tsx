@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Settings2, RotateCcw, ScanLine, FastForward, Trophy } from "lucide-react";
+import { Faders, ArrowCounterClockwise, Scan, FastForward, Trophy } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCampaign } from "@/state/campaign";
 
@@ -13,7 +13,7 @@ export function DemoPill() {
         onClick={() => setOpen(true)}
         className="fixed bottom-[80px] right-4 z-50 flex size-12 items-center justify-center rounded-full bg-black/80 text-white shadow-xl backdrop-blur-md transition-transform active:scale-95"
       >
-        <Settings2 className="size-5" />
+        <Faders className="size-5" />
       </button>
 
       <AnimatePresence>
@@ -40,14 +40,14 @@ export function DemoPill() {
                   onClick={() => { reset(); setOpen(false); }}
                   className="flex items-center gap-3 rounded-xl p-3 text-sm font-semibold text-foreground hover:bg-muted active:bg-muted/80"
                 >
-                  <RotateCcw className="size-4 text-harveys" />
+                  <ArrowCounterClockwise className="size-5 text-harveys" />
                   Reset to zero
                 </button>
                 <button
                   onClick={() => { pull(); setOpen(false); }}
                   className="flex items-center gap-3 rounded-xl p-3 text-sm font-semibold text-foreground hover:bg-muted active:bg-muted/80"
                 >
-                  <ScanLine className="size-4 text-harveys" />
+                  <Scan className="size-5 text-harveys" />
                   Buy a combo (scan)
                 </button>
                 <button

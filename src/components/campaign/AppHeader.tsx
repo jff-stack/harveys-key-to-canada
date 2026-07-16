@@ -1,26 +1,37 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingBag, ChevronLeft, Sun, Moon } from "lucide-react";
+import { Bag, CaretLeft, Sun, Moon } from "@phosphor-icons/react";
 import { useCampaign } from "@/state/campaign";
 
 export function AppHeader({
   title,
   back,
+  onBack,
 }: {
   title: string;
   back?: string;
+  onBack?: () => void;
 }) {
   const { state, toggleTheme } = useCampaign();
 
   return (
-    <header className="relative z-20 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <header className="relative z-20 border-b border-border/30 bg-background/80 backdrop-blur-xl">
       <div className="flex items-center justify-between px-4 pb-3 pt-4">
-        {back ? (
-          <Link
-            to={back}
-            className="flex size-9 items-center justify-center rounded-full text-foreground hover:bg-muted"
-          >
-            <ChevronLeft className="size-5" />
-          </Link>
+        {back || onBack ? (
+          back ? (
+            <Link
+              to={back}
+              className="flex size-9 items-center justify-center rounded-full text-foreground hover:bg-muted"
+            >
+              <CaretLeft className="size-6 text-foreground" />
+            </Link>
+          ) : (
+            <button
+              onClick={onBack}
+              className="flex size-9 items-center justify-center rounded-full text-foreground hover:bg-muted"
+            >
+              <CaretLeft className="size-6 text-foreground" />
+            </button>
+          )
         ) : (
           <span
             className="cursor-default select-none text-lg font-black tracking-tight text-harveys"
@@ -39,16 +50,16 @@ export function AppHeader({
             className="flex size-9 items-center justify-center rounded-full text-foreground hover:bg-muted"
           >
             {state.theme === "dark" ? (
-              <Sun className="size-5" />
+              <Sun className="size-6" />
             ) : (
-              <Moon className="size-5" />
+              <Moon className="size-6" />
             )}
           </button>
           <button
             aria-label="Bag"
             className="flex size-9 items-center justify-center rounded-full text-foreground hover:bg-muted"
           >
-            <ShoppingBag className="size-5" />
+            <Bag className="size-6 text-harveys" />
           </button>
         </div>
       </div>

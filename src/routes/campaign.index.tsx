@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ScanLine, Gift, MapPin, Trophy, ChevronRight } from "lucide-react";
+import { Scan, Gift, MapPin, Trophy, CaretRight } from "@phosphor-icons/react";
 import cntower from "@/assets/landmark-cntower.png";
 import niagara from "@/assets/landmark-niagara.png";
 
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/campaign/")({
 
 const STEPS = [
   { icon: Gift, title: "Collect", body: "Every qualifying combo comes with a collectible Canadian landmark keychain." },
-  { icon: ScanLine, title: "Scan", body: "Tap your keychain to the app to add the landmark to your collection." },
+  { icon: Scan, title: "Scan", body: "Tap your keychain to the app to add the landmark to your collection." },
   { icon: Trophy, title: "Earn Rewards", body: "Hit combo milestones to unlock rewards — from discounts to free food." },
   { icon: MapPin, title: "Complete Canada", body: "Collect all 8 landmarks to enter the Grand Prize draw." },
 ];
@@ -75,7 +75,7 @@ function Landing() {
               className="flex size-11 shrink-0 items-center justify-center rounded-xl text-white"
               style={{ background: "var(--grad-harveys)" }}
             >
-              <s.icon className="size-5" />
+              <s.icon className="size-6" weight="bold" />
             </span>
             <div>
               <p className="font-display text-base font-bold text-foreground">{s.title}</p>
@@ -85,7 +85,7 @@ function Landing() {
         ))}
       </div>
 
-      <div className="sticky bottom-0 space-y-3 border-t border-border/60 bg-background/90 p-5 backdrop-blur-xl">
+      <div className="sticky bottom-0 space-y-3 border-t border-border/30 bg-background/90 p-5 backdrop-blur-xl">
         <Link
           to="/campaign/home"
           className="flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-base font-bold text-white shadow-[var(--shadow-float)] transition-transform active:scale-[0.98]"

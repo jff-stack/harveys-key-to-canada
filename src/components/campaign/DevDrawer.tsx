@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, RotateCcw } from "lucide-react";
+import { X, ArrowCounterClockwise } from "@phosphor-icons/react";
 import { useCampaign } from "@/state/campaign";
 import { LANDMARKS, type LandmarkId } from "@/data/landmarks";
 
@@ -117,7 +117,7 @@ export function DevDrawer({
                 onClick={reset}
                 className="flex items-center justify-center gap-1 rounded-xl bg-muted px-4 py-2.5 text-sm font-semibold text-foreground"
               >
-                <RotateCcw className="size-4" />
+                <ArrowCounterClockwise className="size-4" />
                 Reset
               </button>
             </div>

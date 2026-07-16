@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Share2, RotateCcw } from "lucide-react";
+import { ShareNetwork, ArrowCounterClockwise } from "@phosphor-icons/react";
 import type { Landmark } from "@/data/landmarks";
 import { getPostcardArt } from "@/assets/postcards";
 
@@ -69,12 +69,17 @@ export function DigitalPostcard({ landmark, onClose }: Props) {
 
           {/* BACK — handwritten postcard */}
           <div
-            className="absolute inset-0 aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[oklch(0.96_0.02_85)] p-6 shadow-[var(--shadow-float)] dark:bg-[oklch(0.22_0.02_85)]"
+            className="absolute inset-0 aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[#FFF9E6] p-6 shadow-[var(--shadow-float)] dark:bg-stone-800"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
             }}
           >
+            {/* Texture overlay */}
+            <div 
+              className="pointer-events-none absolute inset-0 opacity-[0.4] mix-blend-multiply dark:opacity-[0.15] dark:mix-blend-screen" 
+              style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
+            />
             {/* Perforated edge */}
             <div className="absolute inset-0 rounded-2xl border-[3px] border-dashed border-canada/30" />
 
@@ -146,7 +151,7 @@ export function DigitalPostcard({ landmark, onClose }: Props) {
           className="flex flex-1 items-center justify-center gap-2 rounded-2xl py-3 text-sm font-bold text-white shadow-[var(--shadow-float)]"
           style={{ background: "var(--grad-harveys)" }}
         >
-          <Share2 className="size-4" />
+          <ShareNetwork className="size-5" />
           Share Postcard
         </button>
         {onClose && (
@@ -154,7 +159,7 @@ export function DigitalPostcard({ landmark, onClose }: Props) {
             onClick={onClose}
             className="flex items-center justify-center gap-1 rounded-2xl bg-muted px-4 py-3 text-sm font-bold text-foreground"
           >
-            <RotateCcw className="size-4" />
+            <ArrowCounterClockwise className="size-5" />
             Back
           </button>
         )}

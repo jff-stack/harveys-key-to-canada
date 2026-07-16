@@ -1,15 +1,15 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, Grid3x3, Map, ScanLine, Trophy, User } from "lucide-react";
+import { House, GridNine, MapPin, Scan, Trophy, User } from "@phosphor-icons/react";
 import { useState } from "react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { DemoPill } from "@/components/campaign/DemoPill";
 
 const TABS = [
-  { to: "/campaign/home", label: "Home", icon: Home },
-  { to: "/campaign/collection", label: "Collect", icon: Grid3x3 },
-  { to: "/campaign/scan", label: "Scan", icon: ScanLine },
-  { to: "/campaign/map", label: "Map", icon: Map },
+  { to: "/campaign/home", label: "Home", icon: House },
+  { to: "/campaign/collection", label: "Collect", icon: GridNine },
+  { to: "/campaign/scan", label: "Scan", icon: Scan },
+  { to: "/campaign/map", label: "Map", icon: MapPin },
   { to: "/campaign/grand-prize", label: "Prize", icon: Trophy },
   { to: "/campaign/profile", label: "You", icon: User },
 ];
@@ -34,7 +34,7 @@ export function CampaignTabBar() {
                 )}
                 style={{ background: "var(--grad-harveys)" }}
               >
-                <Icon className="size-6" strokeWidth={2.4} />
+                <Icon className="size-6 text-white" weight="bold" />
               </span>
             ) : (
               <Icon
@@ -64,17 +64,20 @@ export function CampaignTabBar() {
 export function PhoneShell({
   children,
   header,
+  overlay,
 }: {
   children: ReactNode;
   header?: ReactNode;
+  overlay?: ReactNode;
 }) {
   return (
-    <div className="relative flex h-full w-full flex-col bg-background">
+    <div className="relative flex h-full w-full flex-col bg-background overflow-hidden">
       <MapleParticles />
       {header}
       <main className="relative z-10 flex-1 overflow-y-auto pb-4">
         {children}
       </main>
+      {overlay}
       <CampaignTabBar />
       <DemoPill />
     </div>

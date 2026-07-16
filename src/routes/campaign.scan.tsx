@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ScanLine, Nfc } from "lucide-react";
+import { Scan as ScanIcon, Radio } from "@phosphor-icons/react";
 import { PhoneShell } from "@/components/campaign/PhoneShell";
 import { AppHeader } from "@/components/campaign/AppHeader";
 import { useCampaign, type ScanResult } from "@/state/campaign";
@@ -118,7 +118,7 @@ function Scan() {
 
           {phase === "idle" && (
             <div className="flex flex-col items-center text-white/70">
-              <ScanLine className="size-14" />
+              <ScanIcon className="size-16 text-white" weight="bold" />
               <p className="mt-2 text-sm">Ready to scan</p>
             </div>
           )}
@@ -136,7 +136,7 @@ function Scan() {
             "Unlocked!"
           ) : (
             <>
-              <Nfc className="size-5" /> Simulate Scan
+              <Radio className="size-5" /> Simulate Scan
             </>
           )}
         </button>
