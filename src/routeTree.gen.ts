@@ -9,27 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as CampaignRouteImport } from './routes/campaign'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CampaignRouteImport } from './routes/campaign'
 import { Route as CampaignIndexRouteImport } from './routes/campaign.index'
-import { Route as CampaignScanRouteImport } from './routes/campaign.scan'
-import { Route as CampaignRewardRouteImport } from './routes/campaign.reward'
-import { Route as CampaignProfileRouteImport } from './routes/campaign.profile'
-import { Route as CampaignPassportRouteImport } from './routes/campaign.passport'
-import { Route as CampaignMapRouteImport } from './routes/campaign.map'
-import { Route as CampaignHomeRouteImport } from './routes/campaign.home'
-import { Route as CampaignGrandPrizeRouteImport } from './routes/campaign.grand-prize'
-import { Route as CampaignDesignSystemRouteImport } from './routes/campaign.design-system'
 import { Route as CampaignCollectionRouteImport } from './routes/campaign.collection'
+import { Route as CampaignDesignSystemRouteImport } from './routes/campaign.design-system'
+import { Route as CampaignGrandPrizeRouteImport } from './routes/campaign.grand-prize'
+import { Route as CampaignHomeRouteImport } from './routes/campaign.home'
+import { Route as CampaignMapRouteImport } from './routes/campaign.map'
+import { Route as CampaignPassportRouteImport } from './routes/campaign.passport'
+import { Route as CampaignProfileRouteImport } from './routes/campaign.profile'
+import { Route as CampaignRewardRouteImport } from './routes/campaign.reward'
+import { Route as CampaignScanRouteImport } from './routes/campaign.scan'
 
-const CampaignRoute = CampaignRouteImport.update({
-  id: '/campaign',
-  path: '/campaign',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CampaignRoute = CampaignRouteImport.update({
+  id: '/campaign',
+  path: '/campaign',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CampaignIndexRoute = CampaignIndexRouteImport.update({
@@ -37,39 +37,9 @@ const CampaignIndexRoute = CampaignIndexRouteImport.update({
   path: '/',
   getParentRoute: () => CampaignRoute,
 } as any)
-const CampaignScanRoute = CampaignScanRouteImport.update({
-  id: '/scan',
-  path: '/scan',
-  getParentRoute: () => CampaignRoute,
-} as any)
-const CampaignRewardRoute = CampaignRewardRouteImport.update({
-  id: '/reward',
-  path: '/reward',
-  getParentRoute: () => CampaignRoute,
-} as any)
-const CampaignProfileRoute = CampaignProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => CampaignRoute,
-} as any)
-const CampaignPassportRoute = CampaignPassportRouteImport.update({
-  id: '/passport',
-  path: '/passport',
-  getParentRoute: () => CampaignRoute,
-} as any)
-const CampaignMapRoute = CampaignMapRouteImport.update({
-  id: '/map',
-  path: '/map',
-  getParentRoute: () => CampaignRoute,
-} as any)
-const CampaignHomeRoute = CampaignHomeRouteImport.update({
-  id: '/home',
-  path: '/home',
-  getParentRoute: () => CampaignRoute,
-} as any)
-const CampaignGrandPrizeRoute = CampaignGrandPrizeRouteImport.update({
-  id: '/grand-prize',
-  path: '/grand-prize',
+const CampaignCollectionRoute = CampaignCollectionRouteImport.update({
+  id: '/collection',
+  path: '/collection',
   getParentRoute: () => CampaignRoute,
 } as any)
 const CampaignDesignSystemRoute = CampaignDesignSystemRouteImport.update({
@@ -77,9 +47,39 @@ const CampaignDesignSystemRoute = CampaignDesignSystemRouteImport.update({
   path: '/design-system',
   getParentRoute: () => CampaignRoute,
 } as any)
-const CampaignCollectionRoute = CampaignCollectionRouteImport.update({
-  id: '/collection',
-  path: '/collection',
+const CampaignGrandPrizeRoute = CampaignGrandPrizeRouteImport.update({
+  id: '/grand-prize',
+  path: '/grand-prize',
+  getParentRoute: () => CampaignRoute,
+} as any)
+const CampaignHomeRoute = CampaignHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => CampaignRoute,
+} as any)
+const CampaignMapRoute = CampaignMapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => CampaignRoute,
+} as any)
+const CampaignPassportRoute = CampaignPassportRouteImport.update({
+  id: '/passport',
+  path: '/passport',
+  getParentRoute: () => CampaignRoute,
+} as any)
+const CampaignProfileRoute = CampaignProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => CampaignRoute,
+} as any)
+const CampaignRewardRoute = CampaignRewardRouteImport.update({
+  id: '/reward',
+  path: '/reward',
+  getParentRoute: () => CampaignRoute,
+} as any)
+const CampaignScanRoute = CampaignScanRouteImport.update({
+  id: '/scan',
+  path: '/scan',
   getParentRoute: () => CampaignRoute,
 } as any)
 
@@ -176,18 +176,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/campaign': {
-      id: '/campaign'
-      path: '/campaign'
-      fullPath: '/campaign'
-      preLoaderRoute: typeof CampaignRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/campaign': {
+      id: '/campaign'
+      path: '/campaign'
+      fullPath: '/campaign'
+      preLoaderRoute: typeof CampaignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/campaign/': {
@@ -197,53 +197,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CampaignIndexRouteImport
       parentRoute: typeof CampaignRoute
     }
-    '/campaign/scan': {
-      id: '/campaign/scan'
-      path: '/scan'
-      fullPath: '/campaign/scan'
-      preLoaderRoute: typeof CampaignScanRouteImport
-      parentRoute: typeof CampaignRoute
-    }
-    '/campaign/reward': {
-      id: '/campaign/reward'
-      path: '/reward'
-      fullPath: '/campaign/reward'
-      preLoaderRoute: typeof CampaignRewardRouteImport
-      parentRoute: typeof CampaignRoute
-    }
-    '/campaign/profile': {
-      id: '/campaign/profile'
-      path: '/profile'
-      fullPath: '/campaign/profile'
-      preLoaderRoute: typeof CampaignProfileRouteImport
-      parentRoute: typeof CampaignRoute
-    }
-    '/campaign/passport': {
-      id: '/campaign/passport'
-      path: '/passport'
-      fullPath: '/campaign/passport'
-      preLoaderRoute: typeof CampaignPassportRouteImport
-      parentRoute: typeof CampaignRoute
-    }
-    '/campaign/map': {
-      id: '/campaign/map'
-      path: '/map'
-      fullPath: '/campaign/map'
-      preLoaderRoute: typeof CampaignMapRouteImport
-      parentRoute: typeof CampaignRoute
-    }
-    '/campaign/home': {
-      id: '/campaign/home'
-      path: '/home'
-      fullPath: '/campaign/home'
-      preLoaderRoute: typeof CampaignHomeRouteImport
-      parentRoute: typeof CampaignRoute
-    }
-    '/campaign/grand-prize': {
-      id: '/campaign/grand-prize'
-      path: '/grand-prize'
-      fullPath: '/campaign/grand-prize'
-      preLoaderRoute: typeof CampaignGrandPrizeRouteImport
+    '/campaign/collection': {
+      id: '/campaign/collection'
+      path: '/collection'
+      fullPath: '/campaign/collection'
+      preLoaderRoute: typeof CampaignCollectionRouteImport
       parentRoute: typeof CampaignRoute
     }
     '/campaign/design-system': {
@@ -253,11 +211,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CampaignDesignSystemRouteImport
       parentRoute: typeof CampaignRoute
     }
-    '/campaign/collection': {
-      id: '/campaign/collection'
-      path: '/collection'
-      fullPath: '/campaign/collection'
-      preLoaderRoute: typeof CampaignCollectionRouteImport
+    '/campaign/grand-prize': {
+      id: '/campaign/grand-prize'
+      path: '/grand-prize'
+      fullPath: '/campaign/grand-prize'
+      preLoaderRoute: typeof CampaignGrandPrizeRouteImport
+      parentRoute: typeof CampaignRoute
+    }
+    '/campaign/home': {
+      id: '/campaign/home'
+      path: '/home'
+      fullPath: '/campaign/home'
+      preLoaderRoute: typeof CampaignHomeRouteImport
+      parentRoute: typeof CampaignRoute
+    }
+    '/campaign/map': {
+      id: '/campaign/map'
+      path: '/map'
+      fullPath: '/campaign/map'
+      preLoaderRoute: typeof CampaignMapRouteImport
+      parentRoute: typeof CampaignRoute
+    }
+    '/campaign/passport': {
+      id: '/campaign/passport'
+      path: '/passport'
+      fullPath: '/campaign/passport'
+      preLoaderRoute: typeof CampaignPassportRouteImport
+      parentRoute: typeof CampaignRoute
+    }
+    '/campaign/profile': {
+      id: '/campaign/profile'
+      path: '/profile'
+      fullPath: '/campaign/profile'
+      preLoaderRoute: typeof CampaignProfileRouteImport
+      parentRoute: typeof CampaignRoute
+    }
+    '/campaign/reward': {
+      id: '/campaign/reward'
+      path: '/reward'
+      fullPath: '/campaign/reward'
+      preLoaderRoute: typeof CampaignRewardRouteImport
+      parentRoute: typeof CampaignRoute
+    }
+    '/campaign/scan': {
+      id: '/campaign/scan'
+      path: '/scan'
+      fullPath: '/campaign/scan'
+      preLoaderRoute: typeof CampaignScanRouteImport
       parentRoute: typeof CampaignRoute
     }
   }
